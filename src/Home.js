@@ -6,7 +6,8 @@ export class Home extends Component {
     state = {
         corona_prediction: {
             corona: 0
-        }
+        },
+        welcome: ''
     }
 
     user_symptoms = {
@@ -31,7 +32,10 @@ export class Home extends Component {
 
         axios.get('http://127.0.0.1:8000/welcome/')
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
+                this.setState({welcome:response.data})
+                console.log(this.state.welcome)
+
             })
     }
 
@@ -53,8 +57,15 @@ export class Home extends Component {
                 <label>
 
                     <input className="mt-md-0 d-flex justify-content-left"
-                        name="response"
+                        name="predictionResult"
                         type="text" value={this.state.corona_prediction['corona']}
+                    />
+                </label>
+                <label>
+
+                    <input className="mt-md-0 d-flex justify-content-left"
+                        name="welcomeMessage"
+                        type="text" value={this.state.welcome}
                     />
                 </label>
 
